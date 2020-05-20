@@ -55,6 +55,7 @@ class Game extends React.Component {
       }],
       stepNumber: 0,
       xIsNext: true,
+      ascendingHistory: true
     };
   }
 
@@ -74,6 +75,12 @@ class Game extends React.Component {
       stepNumber: history.length,
       xIsNext: !this.state.xIsNext,
     });
+  }
+
+  toggleSort() {
+    this.setState({
+      ascendingHistory: !this.state.ascendingHistory
+    })
   }
 
   jumpTo(step) {
@@ -101,6 +108,9 @@ class Game extends React.Component {
         </li>
       );
     });
+    if (!this.state.ascendingHistory) {
+        moves.reverse()
+    }
 
     let status;
     if (winner) {
@@ -119,6 +129,7 @@ class Game extends React.Component {
         </div>
         <div className="game-info">
           <div>{status}</div>
+          <button onClick={()=>this.toggleSort()}>Sort {this.state.ascendingHistory ? "descending" : "ascending"}</button>
           <ol>{moves}</ol>
         </div>
       </div>
