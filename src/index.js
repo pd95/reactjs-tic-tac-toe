@@ -3,9 +3,10 @@ import ReactDOM from 'react-dom';
 import './index.css';
 
 function Square(props) {
+  let classList = props.value === null ? "square free":"square"
   return (
     <button 
-      className="square" 
+      className={ classList } 
       onClick={props.onClick}
     >
       { props.value }
