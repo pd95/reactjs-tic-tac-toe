@@ -3,7 +3,9 @@ import ReactDOM from 'react-dom';
 import './index.css';
 
 function Square(props) {
-  let classList = props.value === null ? "square free":"square"
+  let classList = "square"
+  classList += props.value === null ? " free" : ""
+  classList += props.highlight ? " highlight" : ""
   return (
     <button 
       className={ classList } 
@@ -19,6 +21,7 @@ class Board extends React.Component {
   renderSquare(i) {
     return <Square key={i}
       value={this.props.squares[i]}
+      highlight={this.props.winnerLine.includes(i)}
       onClick={() => this.props.onClick(i)}
       />;
   }
@@ -113,10 +116,13 @@ class Game extends React.Component {
     }
 
     let status;
+    let winnerLine;
     if (winner) {
-      status = 'Winner: ' + winner;
+      status = 'Winner: ' + winner.winner;
+      winnerLine = winner.line
     } else {
       status = 'Next player: ' + (this.state.xIsNext ? 'X' : 'O');
+      winnerLine = []
     }
 
     return (
@@ -124,6 +130,7 @@ class Game extends React.Component {
         <div className="game-board">
           <Board 
             squares={current.squares}
+            winnerLine={winnerLine}
             onClick={ (i) => this.handleClick(i) }
           />
         </div>
@@ -158,7 +165,7 @@ function calculateWinner(squares) {
   for (let i = 0; i < lines.length; i++) {
     const [a, b, c] = lines[i];
     if (squares[a] && squares[a] === squares[b] && squares[a] === squares[c]) {
-      return squares[a];
+      return { winner: squares[a], line: lines[i]};
     }
   }
   return null;
