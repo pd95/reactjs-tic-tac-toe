@@ -1,6 +1,6 @@
 # Tic Tac Toe
 
-The "Intro to React" tutorial from [reactjs.org](https://reactjs.org/tutorial/tutorial.html).
+The "Intro to React" tutorial from [reactjs.org](https://reactjs.org/tutorial/tutorial.html).<br />
 My starter project on learning reactJS basics... because I had a need for more structured HTML+JS.
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
@@ -32,7 +32,7 @@ Your app is ready to be deployed!
 
 See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
-### `npm run serve``
+### `npm run serve`
 
 Serves the production app from the `build` folder.<br />
 Just for a quick verification on `localhost`.
